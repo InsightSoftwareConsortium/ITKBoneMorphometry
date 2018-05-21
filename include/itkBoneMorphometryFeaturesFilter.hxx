@@ -128,8 +128,7 @@ BoneMorphometryFeaturesFilter< TInputImage, TMaskImage >
 template< typename TInputImage, typename TMaskImage >
 void
 BoneMorphometryFeaturesFilter< TInputImage, TMaskImage >
-::ThreadedGenerateData(const RegionType & outputRegionForThread,
-                       ThreadIdType threadId)
+::DynamicThreadedGenerateData(const RegionType & outputRegionForThread)
 {
   NeighborhoodRadiusType radius;
   radius.Fill(1);
@@ -209,14 +208,14 @@ BoneMorphometryFeaturesFilter< TInputImage, TMaskImage >
       }
     }
 
-  m_NumVoxelsInsideMask[threadId] = numVoxels;
-  m_NumBoneVoxels[threadId] = numBoneVoxels;
-  m_NumX[threadId] = numX;
-  m_NumY[threadId] = numY;
-  m_NumZ[threadId] = numZ;
-  m_NumXO[threadId] = numXO;
-  m_NumYO[threadId] = numYO;
-  m_NumZO[threadId] = numZO;
+    m_NumVoxelsInsideMask = numVoxels;
+    m_NumBoneVoxels = numBoneVoxels;
+    m_NumX = numX;
+    m_NumY = numY;
+    m_NumZ = numZ;
+    m_NumXO = numXO;
+    m_NumYO = numYO;
+    m_NumZO = numZO;
 }
 
 template< typename TInputImage, typename TMaskImage >
